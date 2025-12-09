@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJ SPORT  
+        Gear Terbaik Untuk Performa Terbaik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Konfigurasi Custom Tailwind untuk Dark Theme Premium */
+        :root {
+            --color-neon: #00eaff; /* Biru Elektrik/Neon */
+            --color-neon-hover: #17eaf9;
+            --color-background: #121212; /* Hitam Gelap */
+            --color-primary: #1e1e1e; /* Abu Gelap untuk card/sidebar */
+        }
+        
+        /* Custom Styling */
+        .dark {
+            color-scheme: dark;
+        }
+
+        /* Light mode overrides when html does NOT have .dark */
+        html:not(.dark) {
+            color-scheme: light;
+            --color-neon: #0066ff; /* slightly deeper blue for light */
+            --color-neon-hover: #0052d4;
+            --color-background: #f8fafc; /* light background */
+            --color-primary: #ffffff; /* card bg */
+        }
+
+        /* Override common text utility classes for light mode to ensure readability */
+        html:not(.dark) .text-white { color: #0f172a !important; }
+        html:not(.dark) .text-gray-300 { color: #475569 !important; }
+        html:not(.dark) .text-gray-400 { color: #64748b !important; }
+        html:not(.dark) .text-gray-500 { color: #6b7280 !important; }
+        html:not(.dark) .text-gray-200 { color: #0f172a !important; }
+        html:not(.dark) .bg-bg-dark { background-color: var(--color-background) !important; }
+        html:not(.dark) .bg-card-dark { background-color: var(--color-primary) !important; }
+        /* In light mode, make category card titles blue for visibility */
+        html:not(.dark) #categories p.font-semibold,
+        html:not(.dark) #categories .tilt-inner p.font-semibold {
+            color: var(--color-neon) !important;
+        }
+
+        /* Parallax Effect (untuk Hero) */
+        .parallax {
+            background-image: url('https://images.unsplash.com/photo-1549476483-2070624a689b?q=80&w=2000&auto=format&fit=crop'); /* Gambar olahraga gelap */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Loading Screen Styling */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-background);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.7s ease-out;
+            opacity: 1;
+        }
+
+        .spinner {
+            border: 4px solid var(--color-primary);
+            border-top: 4px solid var(--color-neon);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hover Glow Effect */
+        .btn-neon-glow {
+            box-shadow: 0 0 10px var(--color-neon), 0 0 20px var(--color-neon-hover);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-neon-glow:hover {
+            box-shadow: 0 0 15px var(--color-neon-hover), 0 0 30px var(--color-neon);
+        }
+
+        /* Reveal on scroll (default hidden, becomes visible with .visible) */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slight horizontal variant for navigation items */
+        .reveal-on-scroll.nav-item {
+            transform: translateY(6px) translateX(-6px);
+        }
+
+        .reveal-on-scroll.nav-item.visible {
+            transform: translateY(0) translateX(0);
+        }
+
+        /* Simple one-shot button feedback animation */
+        .animate-ping-once {
+            animation: pingOnce 420ms cubic-bezier(.2,.9,.2,1);
+        }
+
+        /* Promo blue variant */
+        .promo-blue {
+            --promo-blue: #3b82f6; /* blue-500 */
+            border-color: var(--promo-blue) !important;
+            background: linear-gradient(180deg, rgba(59,130,246,0.04), rgba(2,6,23,0.12));
+        }
+        .promo-blue .text-neon {
+            color: #60a5fa !important; /* lighter blue for headings */
+        }
+        .promo-blue p { color: #bfdbfe !important; }
+        .promo-blue .promo-code {
+            background-color: rgba(59,130,246,0.12) !important;
+            color: #e6f0ff !important;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .promo-blue .promo-link {
+            color: var(--promo-blue) !important;
+            background-color: transparent !important;
+            border: 2px solid rgba(59,130,246,0.06);
+        }
+
+        @keyframes pingOnce {
+            0% { transform: scale(1); }
+            40% { transform: scale(0.96); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero animated radial overlay */
+        .parallax::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(0,234,255,0.08), transparent 35%), radial-gradient(circle at 10% 20%, rgba(23,234,249,0.04), transparent 20%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: floatOverlay 12s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatOverlay {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-12px) translateX(8px) ; }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        /* Nav underline */
+        header nav a { position: relative; }
+        header nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+            height: 3px;
+            width: 60%;
+            background: linear-gradient(90deg, var(--color-neon), var(--color-neon-hover));
+            border-radius: 4px;
+            transition: transform 280ms cubic-bezier(.2,.9,.2,1);
+        }
+        header nav a:hover::after, header nav a.active::after { transform: translateX(-50%) scaleX(1); }
+
+        /* Tilt card base styles */
+        .tilt-card { transform-style: preserve-3d; perspective: 800px; transition: transform 300ms cubic-bezier(.2,.9,.2,1); }
+        .tilt-card .tilt-inner { transition: transform 300ms cubic-bezier(.2,.9,.2,1); will-change: transform; }
+
+        /* Image shimmer overlay */
+        .img-wrap { position: relative; overflow: hidden; border-radius: 0.5rem; }
+        .img-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            height: 100%; width: 120%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-18deg);
+            transition: none;
+        }
+        .img-wrap.shimmer-animate::after { animation: shimmer 2s linear infinite; }
+
+        @keyframes shimmer {
+            0% { left: -120%; }
+            100% { left: 120%; }
+        }
+
+        /* Subtle card glow on hover */
+        .tilt-card:hover { box-shadow: 0 10px 30px rgba(0,234,255,0.06), 0 6px 12px rgba(0,0,0,0.6); transform: translateY(-6px); }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Modal quick-view */
+        .modal-backdrop { position: fixed; inset: 0; background: rgba(2,6,23,0.65); display: flex; align-items: center; justify-content: center; z-index: 60; }
+        .modal { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); padding: 1.25rem; border-radius: 0.75rem; max-width: 900px; width: 95%; color: #e6eef7; box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+        .modal img { max-width: 420px; width: 100%; height: auto; border-radius: 0.5rem; }
+        .modal-close { position: absolute; top: 12px; right: 12px; background: transparent; border: none; color: #cbd5e1; font-size: 1.25rem; }
+
+        /* Fly-to-cart clone */
+        .fly-image { position: fixed; z-index: 9999; pointer-events: none; border-radius: 8px; width: 140px; height: auto; transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease; will-change: transform, opacity; }
+
+        /* Carousel control buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            background: rgba(30,30,30,0.7);
+            color: var(--color-neon);
+            border: 1px solid rgba(255,255,255,0.03);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+        }
+        .carousel-btn:hover { transform: translateY(-50%) scale(1.05); }
+
+        /* Smooth theme transition */
+        html, body, .bg-card-dark, .bg-bg-dark, .modal, .product-card, header, footer {
+            transition: background-color 320ms ease, color 320ms ease, border-color 320ms ease, box-shadow 320ms ease;
+        }
+
+        /* Theme menu (popover) */
+        .theme-menu {
+            position: absolute;
+            right: 0;
+            margin-top: 8px;
+            background: var(--color-primary);
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+            padding: 6px;
+            border-radius: 8px;
+            display: none;
+            z-index: 60;
+            min-width: 160px;
+        }
+        .theme-menu.show { display: block; }
+        .theme-menu button { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border-radius: 6px; background: transparent; border: none; color: inherit; cursor: pointer; }
+        .theme-menu button:hover { background: rgba(255,255,255,0.02); }
+
+        /* Top animated background (header + hero subtle gradient/particles) */
+        .top-animated::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 10% 20%, rgba(0,234,255,0.06), transparent 10%),
+                        radial-gradient(ellipse at 90% 80%, rgba(23,234,249,0.04), transparent 8%),
+                        linear-gradient(120deg, rgba(0,234,255,0.03), rgba(23,234,249,0.02));
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.95;
+            background-size: 200% 200%;
+            animation: topGradientMove 10s linear infinite;
+        }
+
+        @keyframes topGradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Add small floating particles using pseudo-elements */
+        .top-animated::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 12% 20%, rgba(255,255,255,0.06) 0 2px, transparent 3px),
+                              radial-gradient(circle at 78% 40%, rgba(255,255,255,0.04) 0 1.6px, transparent 2px),
+                              radial-gradient(circle at 40% 80%, rgba(255,255,255,0.035) 0 1.2px, transparent 2px);
+            opacity: 0.8;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 3;
+            transform-origin: center;
+            animation: particlesFloat 12s ease-in-out infinite;
+        }
+
+        @keyframes particlesFloat {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            50% { transform: translateY(-8px) translateX(6px) rotate(4deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        /* Reduce motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .top-animated::before, .top-animated::after { animation: none; }
+            .parallax::after { animation: none; }
+        }
+
+    </style>
+    <script>
+        // Custom Tailwind Configuration (Aksen Neon)
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'neon': 'var(--color-neon)',
+                        'neon-hover': 'var(--color-neon-hover)',
+                        'bg-dark': 'var(--color-background)',
+                        'card-dark': 'var(--color-primary)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Font modern
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="bg-bg-dark text-gray-200 font-sans">
+
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p class="mt-4 text-neon text-xl font-bold tracking-widest">BJ SPORT</p>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-bg-dark/95 backdrop-blur-sm border-b border-gray-800 shadow-lg top-animated relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-black text-neon tracking-widest">BJ SPORT</a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-neon transition duration-200 reveal-on-scroll nav-item">Home</a>
+                    <a href="#katalog" class="text-gray-300 hover:text-neon transition duration-200 reveal-on-scroll nav-item">Katalog</a>
+                    <a href="#promo" class="text-gray-300 hover:text-neon transition duration-200 reveal-on-scroll nav-item">Promo</a>
+                    <a href="#about" class="text-gray-300 hover:text-neon transition duration-200 reveal-on-scroll nav-item">Tentang Kami</a>
+                    <a href="#contact" class="text-gray-300 hover:text-neon transition duration-200 reveal-on-scroll nav-item">Kontak</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-card-dark transition" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-sun text-gray-400 hover:text-yellow-500"></i>
+                        </button>
+
+                        <div id="theme-menu" class="theme-menu" role="menu" aria-label="Pilih tema">
+                            <button data-theme="dark" role="menuitem"><i class="fas fa-moon text-neon"></i> Dark</button>
+                            <button data-theme="light" role="menuitem"><i class="fas fa-sun text-neon"></i> Light</button>
+                            <button data-theme="system" role="menuitem"><i class="fas fa-desktop text-neon"></i> System</button>
+                        </div>
+                    </div>
+                    <a href="#" id="cart-button" class="relative p-2 rounded-full hover:bg-card-dark transition">
+                        <i class="fas fa-shopping-cart text-gray-400 hover:text-neon"></i>
+                        <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">0</span>
+
+                        <!-- Cart preview dropdown -->
+                        <div id="cart-preview" class="hidden absolute right-0 mt-2 w-72 bg-card-dark border border-gray-700 rounded-lg shadow-lg p-4 text-sm z-50">
+                            <div class="flex items-center justify-between mb-3">
+                                <strong class="text-white">Keranjang Anda</strong>
+                                <button id="cart-preview-close" class="text-gray-400 hover:text-neon">×</button>
+                            </div>
+                            <div id="cart-preview-items" class="text-gray-300 mb-3">Belum ada item.</div>
+                            <div class="flex justify-between items-center">
+                                <a href="#katalog" class="text-sm text-neon">Lihat Keranjang</a>
+                                <button id="cart-preview-checkout" class="bg-neon text-bg-dark py-1 px-3 rounded">Checkout</button>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="p-2 rounded-full hover:bg-card-dark transition">
+                        <i class="fas fa-user text-gray-400 hover:text-neon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="parallax h-[600px] flex items-center justify-center text-center bg-black/50 relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="z-10 px-4 reveal-on-scroll">
+                <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight">
+                    <span class="text-neon">BJ SPORT</span> – Gear Terbaik Untuk Performa Terbaik
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Koleksi premium alat olahraga yang dirancang untuk melampaui batas Anda.
+                </p>
+                <a href="#katalog" class="cta-button inline-block py-3 px-8 text-lg font-bold rounded-full bg-neon text-bg-dark btn-neon-glow hover:bg-neon-hover">
+                    Belanja Sekarang
+                </a>
+            </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            
+            <section id="categories" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white border-b-2 border-neon pb-2 inline-block mx-auto">Jelajahi Kategori</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+                    
+                    <a href="#katalog" class="p-6 bg-card-dark rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-neon/20 border border-gray-800 reveal-on-scroll tilt-card">
+                        <div class="tilt-inner">
+                            <i class="fas fa-shoe-prints text-4xl text-neon mb-3"></i>
+                            <p class="font-semibold text-gray-100">Sepatu Olahraga</p>
+                        </div>
+                    </a>
+                    <a href="#katalog" class="p-6 bg-card-dark rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-neon/20 border border-gray-800 reveal-on-scroll tilt-card">
+                        <div class="tilt-inner">
+                            <i class="fas fa-dumbbell text-4xl text-neon mb-3"></i>
+                            <p class="font-semibold text-gray-100">Peralatan Gym</p>
+                        </div>
+                    </a>
+                    <a href="#katalog" class="p-6 bg-card-dark rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-neon/20 border border-gray-800 reveal-on-scroll tilt-card">
+                        <div class="tilt-inner">
+                            <i class="fas fa-table-tennis-paddle-ball text-4xl text-neon mb-3"></i>
+                            <p class="font-semibold text-gray-100">Raket & Bola</p>
+                        </div>
+                    </a>
+                    <a href="#katalog" class="p-6 bg-card-dark rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-neon/20 border border-gray-800 reveal-on-scroll tilt-card">
+                        <div class="tilt-inner">
+                            <i class="fas fa-campground text-4xl text-neon mb-3"></i>
+                            <p class="font-semibold text-gray-100">Alat Camping</p>
+                        </div>
+                    </a>
+                    <!-- Aksesoris Sporting removed as requested -->
+                     <a href="#katalog" class="p-6 bg-card-dark rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-neon/20 border border-gray-800 hidden lg:block reveal-on-scroll tilt-card">
+                        <div class="tilt-inner">
+                            <i class="fas fa-shirt text-4xl text-neon mb-3"></i>
+                            <p class="font-semibold text-gray-100">Jersey & Apparel</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section id="products" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white border-b-2 border-neon pb-2 inline-block mx-auto">✨ Best Seller</h2>
+                <div class="relative">
+                    <button id="bs-left" class="carousel-btn left-2 hidden md:flex">‹</button>
+                    <div id="best-seller-row" class="best-seller-row flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2">
+
+                        <div class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                            <div class="tilt-inner">
+                                <div class="img-wrap shimmer-animate mb-4">
+                                    <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/90/MTA-162247031/alltrek_alltrek_tenda_camping_evoria_automatic_tent_double_layer_3-4_person_full02_gi9onmts.jpg" alt="Tenda Altrek Evoria" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                </div>
+                                <h3 class="text-xl font-semibold text-white">Tenda Altrek Evoria</h3>
+                                <p class="text-sm text-gray-400 mb-2">Alat Camping - Altrek</p>
+                                <div class="flex items-center text-neon mb-2">
+                                     <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i> <span class="text-xs ml-2 text-gray-400">(4.5)</span>
+                                </div>
+                                <p class="text-2xl font-bold text-neon mb-4">Rp 2.999.000</p>
+                                <button data-product-name="Tenda Altrek Evoria" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                            <div class="tilt-inner">
+                                <div class="img-wrap shimmer-animate mb-4">
+                                    <img src="https://blackdiamondequipment.com/cdn/shop/files/112514_3010_ALPINE_CARBON_CORK_TREK_POLES_TUNDRA_01.jpg?v=1742403496" alt="Trekking Pole Black Diamond" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                </div>
+                                <h3 class="text-xl font-semibold text-white">Trekking Pole Black Diamond</h3>
+                                <p class="text-sm text-gray-400 mb-2">Alat Camping - Black Diamond</p>
+                                <div class="flex items-center text-neon mb-2">
+                                     <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="far fa-star text-sm"></i> <span class="text-xs ml-2 text-gray-400">(4.0)</span>
+                                </div>
+                                <p class="text-2xl font-bold text-neon mb-4">Rp 999.000</p>
+                                <button data-product-name="Trekking Pole Black Diamond" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                            <div class="tilt-inner">
+                                <div class="img-wrap shimmer-animate mb-4">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh0i3op1_A8NITbtYH4mqSaW_VkQCXtE6QA&s" alt="Consina Ascole" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                </div>
+                                <h3 class="text-xl font-semibold text-white">Consina Ascole</h3>
+                                <p class="text-sm text-gray-400 mb-2">Alat Camping - Consina</p>
+                                <div class="flex items-center text-neon mb-2">
+                                     <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i> <span class="text-xs ml-2 text-gray-400">(5.0)</span>
+                                </div>
+                                <p class="text-2xl font-bold text-neon mb-4">Rp 1.150.000</p>
+                                <button data-product-name="Consina Ascole" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                            <div class="tilt-inner">
+                                <div class="img-wrap shimmer-animate mb-4">
+                                    <img src="https://d1yutv2xslo29o.cloudfront.net/product/variant/photo/910006506_BLACK_1_aa27.jpg" alt="Jam Tangan Eiger Verdon" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                </div>
+                                <h3 class="text-xl font-semibold text-white">Jam Tangan Eiger Verdon</h3>
+                                <p class="text-sm text-gray-400 mb-2">Aksesoris - Eiger</p>
+                                <div class="flex items-center text-neon mb-2">
+                                     <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i><i class="far fa-star text-sm"></i> <span class="text-xs ml-2 text-gray-400">(3.5)</span>
+                                </div>
+                                <p class="text-2xl font-bold text-neon mb-4">Rp 829.999</p>
+                                <button data-product-name="Jam Tangan Eiger Verdon" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button id="bs-right" class="carousel-btn right-2 hidden md:flex">›</button>
+                </div>
+            </section>
+
+            <section id="promo" class="mb-20 p-10 rounded-xl border-4 border-neon shadow-neon/40 shadow-xl bg-card-dark/70 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/30 z-0"></div>
+                <div class="relative z-10">
+                    <h2 class="text-5xl font-black text-neon mb-3 tracking-wider">BIG SALE!</h2>
+                    <p class="text-3xl font-extrabold text-white mb-6">Diskon hingga 50% untuk Sepatu Lari Premium</p>
+                    <p class="text-lg text-gray-300 mb-8">Gunakan kode: <span class="font-mono text-xl bg-neon/20 p-1 rounded">BJSPORT50</span></p>
+                    <a href="#katalog" class="inline-block py-3 px-10 text-xl font-bold rounded-full bg-white text-bg-dark promo-link transition duration-300 hover:bg-gray-200">
+                        Lihat Produk Promo
+                    </a>
+                </div>
+            </section>
+            
+            <section id="testimony" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white border-b-2 border-neon pb-2 inline-block mx-auto">Apa Kata Mereka?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-card-dark p-6 rounded-xl border border-gray-800 reveal-on-scroll">
+                        <p class="italic text-gray-300 mb-4">"Pengiriman super cepat dan sepatu SpeedRun X-nya benar-benar mengubah waktu lari saya. Kualitas premium!"</p>
+                        <p class="font-semibold text-neon">- Aris S.</p>
+                    </div>
+                     <div class="bg-card-dark p-6 rounded-xl border border-gray-800 reveal-on-scroll">
+                        <p class="italic text-gray-300 mb-4">"Raket PowerMax 99 sangat seimbang. Layanan CS BJ SPORT sangat membantu dalam memilih yang tepat."</p>
+                        <p class="font-semibold text-neon">- Devi P.</p>
+                    </div>
+                     <div class="bg-card-dark p-6 rounded-xl border border-gray-800 reveal-on-scroll">
+                        <p class="italic text-gray-300 mb-4">"Desain website minimalis, mudah mencari produk, dan proses checkoutnya cepat. Pilihan gear terbaik!"</p>
+                        <p class="font-semibold text-neon">- Tio M.</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="about" class="mb-20 pt-16">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white border-b-2 border-neon pb-2 inline-block mx-auto">Tentang BJ SPORT</h2>
+                <div class="bg-card-dark p-10 rounded-xl border border-gray-800">
+                    <p class="text-lg mb-6 text-gray-300">
+                        Didirikan pada tahun 2020, <span class="text-neon font-bold">BJ SPORT</span> hadir dengan satu misi: menyediakan peralatan olahraga premium dan inovatif bagi para atlet dan penggemar di Indonesia. Kami percaya bahwa setiap sesi latihan adalah investasi, dan gear yang tepat adalah kuncinya.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 mt-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-neon mb-2">Visi Kami</h3>
+                            <p class="text-gray-400">Menjadi marketplace olahraga terdepan di Asia Tenggara, dikenal karena kualitas dan teknologi produk.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-neon mb-2">Misi Kami</h3>
+                            <p class="text-gray-400">Kurasi produk terbaik, menyediakan layanan pelanggan eksklusif, dan mendukung komunitas olahraga lokal.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-neon mb-2">Keunggulan</h3>
+                            <ul class="list-disc list-inside text-gray-400">
+                                <li>Produk Bergaransi Resmi</li>
+                                <li>Pengiriman Prioritas</li>
+                                <li>Konsultasi Gear Gratis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="katalog" class="bg-[#0c0c0c] py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-black text-center mb-16 text-neon tracking-wider">Katalog Produk Lengkap</h2>
+                
+                <div class="flex flex-col lg:flex-row gap-8">
+                    
+                    <aside class="w-full lg:w-1/4 bg-card-dark p-6 rounded-xl border border-gray-800 h-fit sticky top-20 reveal-on-scroll">
+                        <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Filter Pencarian</h3>
+                        
+                        <div class="mb-6">
+                            <input type="text" placeholder="Cari di Katalog..." class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-gray-300 focus:border-neon focus:ring-1 focus:ring-neon transition">
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-neon mb-3">Kategori</h4>
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-neon"> Sepatu Olahraga</label>
+                                <label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-neon"> Peralatan Gym</label>
+                                <label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-neon"> Raket & Bola</label>
+                                <label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-neon"> Alat Camping</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-neon mb-3">Harga (Rp)</h4>
+                            <input type="range" min="100000" max="5000000" value="5000000" class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer range-lg accent-neon">
+                            <p class="text-sm text-gray-400 mt-2">Max: <span class="font-mono">Rp 5.000.000</span></p>
+                        </div>
+                        
+                         <div class="mb-6">
+                            <h4 class="font-semibold text-neon mb-3">Brand</h4>
+                            <select class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-gray-300 focus:border-neon focus:ring-1 focus:ring-neon transition">
+                                <option>Semua Brand</option>
+                                <option>AeroPro</option>
+                                <option>FitGen</option>
+                                <option>Titan</option>
+                            </select>
+                        </div>
+
+                        <button class="w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover">Terapkan Filter</button>
+                    </aside>
+
+                    <section class="w-full lg:w-3/4">
+                        <div class="relative">
+                            <button id="k-left" class="carousel-btn left-2 hidden md:flex">‹</button>
+                            <div id="katalog-row" class="best-seller-row flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2">
+
+                                <a href="#detail-product" class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                                    <div class="tilt-inner">
+                                        <div class="img-wrap shimmer-animate mb-4">
+                                            <img src="https://www.adidas.co.id/media/catalog/product/i/x/ix8095_2_apparel_photography_front20center20view_grey.jpg" alt="Jersey Real Madrid Adidas Original" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-white">Jersey Real Madrid Adidas Original</h3>
+                                        <p class="text-sm text-gray-400 mb-2">Jersey - Adidas</p>
+                                        <div class="flex items-center text-neon mb-2">
+                                             <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i><i class="far fa-star text-sm"></i>
+                                        </div>
+                                        <p class="text-2xl font-bold text-neon mb-4">Rp 1.400.000</p>
+                                        <button data-product-name="Jersey Real Madrid Adidas Original" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                            Tambah ke Keranjang
+                                        </button>
+                                    </div>
+                                </a>
+
+                                <a href="#detail-product" class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                                    <div class="tilt-inner">
+                                        <div class="img-wrap shimmer-animate mb-4">
+                                            <img src="https://d1yutv2xslo29o.cloudfront.net/product/variant/media/web/940000708_BLUE_1_7a59.webp" alt="Carier Osprey Atmos 45L Original" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-white">Carier Osprey Atmos 45L Original</h3>
+                                        <p class="text-sm text-gray-400 mb-2">Carrier - Osprey</p>
+                                        <div class="flex items-center text-neon mb-2">
+                                             <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i>
+                                        </div>
+                                        <p class="text-2xl font-bold text-neon mb-4">Rp 2.399.000</p>
+                                        <button data-product-name="Carier Osprey Atmos 45L Original" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                            Tambah ke Keranjang
+                                        </button>
+                                    </div>
+                                </a>
+
+                                 <a href="#detail-product" class="product-card tilt-card flex-none w-80 snap-center bg-card-dark p-4 rounded-xl shadow-lg transition transform hover:shadow-2xl hover:shadow-neon/30 hover:bg-card-dark/70 border border-gray-800 reveal-on-scroll">
+                                    <div class="tilt-inner">
+                                        <div class="img-wrap shimmer-animate mb-4">
+                                            <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/108598/01/fnd/IDN/fmt/png/Sepatu-Futsal-FUTURE-8-MATCH-Unisex" alt="Sepatu Futsal Future 8 Match Unisex" class="rounded-lg w-full h-48 object-cover transition duration-300 hover:opacity-80">
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-white">Sepatu Futsal Future 8 Match Unisex</h3>
+                                        <p class="text-sm text-gray-400 mb-2">Sepatu Futsal - Puma</p>
+                                        <div class="flex items-center text-neon mb-2">
+                                             <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="far fa-star text-sm"></i>
+                                        </div>
+                                        <p class="text-2xl font-bold text-neon mb-4">Rp 1.199.000</p>
+                                        <button data-product-name="Sepatu Futsal Future 8 Match Unisex" class="add-to-cart-btn w-full py-2 rounded-lg bg-neon text-bg-dark font-semibold transition hover:bg-neon-hover micro-interaction">
+                                            Tambah ke Keranjang
+                                        </button>
+                                    </div>
+                                </a>
+
+                            </div>
+                            <button id="k-right" class="carousel-btn right-2 hidden md:flex">›</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="detail-product" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-10 border-b-2 border-gray-800 pb-4 text-center">Detail Produk: Sepatu Running Adidas Runfalcon 5</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <img src="https://assets-alpha.ass8c.upcloudobjects.com/0ri3yu6sr6afbqhrqgxwpq/images/19186-runfalcon_5_running_shoes_blue_ji0874_01_00_standard.png" alt="Foto Utama Sepatu Running Adidas Runfalcon 5" class="rounded-xl border border-gray-700 shadow-2xl mb-4">
+                    <div class="flex gap-2 mt-4">
+                        <img src="https://assets-alpha.ass8c.upcloudobjects.com/0ri3yu6sr6afbqhrqgxwpq/images/19186-runfalcon_5_running_shoes_blue_ji0874_01_00_standard.png" class="w-1/4 rounded-md opacity-70 hover:opacity-100 cursor-pointer transition border-2 border-neon">
+                        <img src="https://ranksports.id/_next/image?url=https%3A%2F%2Fassets-alpha.ass8c.upcloudobjects.com%2F0ri3yu6sr6afbqhrqgxwpq%2Fimages%2F19186-runfalcon_5_running_shoes_blue_ji0874_04_standard.png&w=750&q=100" class="w-1/4 rounded-md opacity-70 hover:opacity-100 cursor-pointer transition border-2 border-neon">
+                        <img src="https://ranksports.id/_next/image?url=https%3A%2F%2Fassets-alpha.ass8c.upcloudobjects.com%2F0ri3yu6sr6afbqhrqgxwpq%2Fimages%2F19186-runfalcon_5_running_shoes_blue_ji0874_03_standard.png&w=750&q=100" class="w-1/4 rounded-md opacity-70 hover:opacity-100 cursor-pointer transition border-2 border-neon">
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="text-4xl font-extrabold text-white mb-2">Sepatu Running Adidas Runfalcon 5</h1>
+                    <p class="text-3xl font-bold text-neon mb-6">Rp 800.999</p>
+                    
+                    <div class="flex items-center text-neon mb-6">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 
+                        <span class="ml-2 text-gray-400">(4.5 Rating - 128 Reviews)</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-white mb-2">Deskripsi Lengkap</h3>
+                    <p class="text-gray-400 mb-6">
+                        Sepatu Running Adidas Runfalcon 5 untuk memecahkan rekor pribadi Anda. Full-length untuk *energy return* maksimal dan midsole busa *hyper-responsive* yang memberikan bantalan ringan tanpa mengorbankan kecepatan. Ideal untuk lari jarak jauh dan maraton.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-white mb-2">Spesifikasi Teknis</h3>
+                    <ul class="list-disc list-inside text-gray-400 bg-card-dark p-4 rounded-lg border border-gray-800">
+                        <li>**Midsole:** HyperFoam Pro</li>
+                        <li>**Plat:** Full-Length Carbon Fiber</li>
+                        <li>**Drop:** 8mm</li>
+                        <li>**Berat:** 220g (Ukuran 42)</li>
+                    </ul>
+
+                    <div class="mt-8">
+                        <label for="size" class="text-white block mb-2">Pilih Ukuran:</label>
+                        <select id="size" class="p-3 bg-card-dark rounded-lg border border-gray-700 text-white mr-4">
+                            <option>40</option>
+                            <option>41</option>
+                            <option>42</option>
+                            <option>43</option>
+                        </select>
+                        <button data-product-name="Sepatu Running Adidas Runfalcon 5" class="add-to-cart-btn py-3 px-8 text-lg rounded-lg bg-neon text-bg-dark font-bold transition hover:bg-neon-hover btn-neon-glow micro-interaction">
+                            <i class="fas fa-cart-plus mr-2"></i> Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-white mb-8 border-b border-gray-800 pb-3 text-center">Rekomendasi Produk Lain</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    </div>
+            </div>
+        </section>
+
+
+        <section id="contact" class="bg-[#0c0c0c] py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-black text-center mb-16 text-neon tracking-wider">Hubungi Kami</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-card-dark p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-2xl font-bold text-white mb-6">Kirim Pesan Langsung</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Nama Lengkap" class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-gray-300 focus:border-neon focus:ring-1 focus:ring-neon">
+                            <input type="email" placeholder="Email Anda" class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-gray-300 focus:border-neon focus:ring-1 focus:ring-neon">
+                            <textarea placeholder="Pesan Anda..." rows="4" class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-gray-300 focus:border-neon focus:ring-1 focus:ring-neon"></textarea>
+                            <button type="submit" class="w-full py-3 rounded-lg bg-neon text-bg-dark font-bold transition hover:bg-neon-hover btn-neon-glow micro-interaction">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-card-dark p-8 rounded-xl border border-gray-800">
+                            <h3 class="text-2xl font-bold text-white mb-4">Informasi Kontak</h3>
+                            <p class="mb-2"><i class="fas fa-map-marker-alt text-neon mr-3"></i> **Alamat:** Ruko Premium Blok A No. 10, Jl. Atlet Sejati, Jakarta Pusat.</p>
+                            <p class="mb-2"><i class="fab fa-whatsapp text-neon mr-3"></i> **WhatsApp:** <span class="text-lg font-mono tracking-wider">+62 812-3456-7890</span></p>
+                            <p class="mb-2"><i class="fas fa-envelope text-neon mr-3"></i> **Email:** info@bjsport.id</p>
+                        </div>
+                         <div class="h-64 rounded-xl overflow-hidden border border-gray-700">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3262334003294!2d106.82281897486243!3d-6.219803093766632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3a6162a04a5%3A0xf639a039d5e39664!2sStadion%20Gelora%20Bung%20Karno!5e0!3m2!1sid!2sid!4v1701980890697!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-card-dark border-t border-gray-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-400">
+            
+            <div class="reveal-on-scroll">
+                <h3 class="text-2xl font-black text-neon tracking-widest mb-4">BJ SPORT</h3>
+                <p class="text-sm">Ruko Premium Blok A No. 10, Jl. Atlet Sejati, Jakarta Pusat.</p>
+                <p class="mt-4 text-white font-semibold"><i class="fab fa-whatsapp text-neon mr-2"></i> +62 812-3456-7890</p>
+            </div>
+
+            <div class="reveal-on-scroll">
+                <h4 class="text-lg font-bold text-white mb-4">Informasi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#about" class="hover:text-neon transition">Tentang Kami</a></li>
+                    <li><a href="#katalog" class="hover:text-neon transition">Katalog</a></li>
+                    <li><a href="#promo" class="hover:text-neon transition">Promo & Diskon</a></li>
+                    <li><a href="#" class="hover:text-neon transition">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+
+            <div class="reveal-on-scroll">
+                 <h4 class="text-lg font-bold text-white mb-4">Layanan</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-neon transition">Cara Belanja</a></li>
+                    <li><a href="#" class="hover:text-neon transition">Lacak Pesanan</a></li>
+                    <li><a href="#" class="hover:text-neon transition">Pengembalian</a></li>
+                    <li><a href="#contact" class="hover:text-neon transition">Hubungi CS</a></li>
+                </ul>
+            </div>
+
+            <div class="reveal-on-scroll">
+                <h4 class="text-lg font-bold text-white mb-4">Ikuti Kami</h4>
+                <div class="flex space-x-4 text-2xl">
+                    <a href="#" class="hover:text-neon transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-neon transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-neon transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; 2025 BJ SPORT. Hak Cipta Dilindungi. Desain Premium oleh Gemini AI.
+        </div>
+    </footer>
+
+
+    <!-- Quick-view modal (inserted near end for convenience) -->
+    <div id="quickview-modal" class="hidden modal-backdrop">
+        <div class="modal relative grid lg:grid-cols-2 gap-6">
+            <button id="quickview-close" class="modal-close">×</button>
+            <div class="flex items-center justify-center">
+                <img id="quickview-image" src="" alt="Preview produk">
+            </div>
+            <div>
+                <h3 id="quickview-title" class="text-2xl font-bold text-white mb-2">Judul Produk</h3>
+                <p id="quickview-price" class="text-neon text-2xl font-extrabold mb-4">Rp 0</p>
+                <p id="quickview-desc" class="text-gray-300 mb-6">Deskripsi singkat produk...</p>
+                <div class="flex gap-3">
+                    <button id="quickview-add" class="bg-neon text-bg-dark py-2 px-4 rounded">Tambah ke Keranjang</button>
+                    <button id="quickview-close-2" class="py-2 px-4 rounded border border-gray-700 text-gray-300">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const body = document.body;
+            const cartCountElement = document.getElementById('cart-count');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeIcon = darkModeToggle ? darkModeToggle.querySelector('i') : null;
+
+            // --- 8. Implementasi Loading Screen ---
+            // Sembunyikan loading screen setelah 1.5 detik
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    body.style.overflow = 'auto'; // Mengaktifkan scroll setelah loading
+                }, 700);
+            }, 1500);
+
+            // --- 8. Mode Toggle Dark/Light (Default Dark) ---
+            
+            // Cek status mode saat ini dari Local Storage (jika ada)
+            if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                document.documentElement.classList.remove('dark');
+            } else {
+                 // Default Dark
+                 document.documentElement.classList.add('dark');
+            }
+
+            const themeMenu = document.getElementById('theme-menu');
+            const themeButtons = themeMenu ? themeMenu.querySelectorAll('button[data-theme]') : [];
+            const prefersDarkQ = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function applyTheme(mode) {
+                if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                // update icon
+                if (darkModeIcon) {
+                    if (document.documentElement.classList.contains('dark')) {
+                        darkModeIcon.classList.remove('fa-sun');
+                        darkModeIcon.classList.add('fa-moon');
+                    } else {
+                        darkModeIcon.classList.remove('fa-moon');
+                        darkModeIcon.classList.add('fa-sun');
+                    }
+                }
+            }
+
+            function applySystemPreference() {
+                applyTheme(prefersDarkQ.matches ? 'dark' : 'light');
+            }
+
+            // Initialize theme based on saved preference or system
+            (function initTheme(){
+                const saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') {
+                    applyTheme(saved);
+                } else {
+                    // 'system' or not set -> follow system
+                    applySystemPreference();
+                }
+            })();
+
+            // Update when system preference changes (only if no explicit saved theme)
+            prefersDarkQ.addEventListener && prefersDarkQ.addEventListener('change', (e) => {
+                const saved = localStorage.getItem('theme');
+                if (!saved || saved === 'system') applySystemPreference();
+            });
+
+            // Toggle theme menu visibility
+            darkModeToggle.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                if (!themeMenu) return;
+                const isShown = themeMenu.classList.toggle('show');
+                darkModeToggle.setAttribute('aria-expanded', isShown ? 'true' : 'false');
+            });
+
+            // Handle theme selection
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const t = btn.getAttribute('data-theme');
+                    if (t === 'system') {
+                        localStorage.removeItem('theme');
+                        applySystemPreference();
+                    } else {
+                        localStorage.setItem('theme', t);
+                        applyTheme(t);
+                    }
+                    themeMenu.classList.remove('show');
+                    darkModeToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close theme menu on outside click or Escape
+            document.addEventListener('click', (e) => {
+                if (themeMenu && !themeMenu.contains(e.target) && !darkModeToggle.contains(e.target)) {
+                    themeMenu.classList.remove('show');
+                    darkModeToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { themeMenu?.classList.remove('show'); darkModeToggle?.setAttribute('aria-expanded','false'); } });
+
+            // Add a floating theme-cycle button (cycles Light -> Dark -> System)
+            (function insertThemeCycleButton(){
+                const themeCycleBtnHtml = `<button id="theme-cycle-btn" aria-label="Cycle theme" title="Cycle theme" type="button"><i class="fas fa-adjust"></i></button>`;
+                document.body.insertAdjacentHTML('beforeend', themeCycleBtnHtml);
+                const themeCycleBtn = document.getElementById('theme-cycle-btn');
+                if (!themeCycleBtn) return;
+
+                function cycleTheme(){
+                    const saved = localStorage.getItem('theme');
+                    if (saved === 'light') {
+                        // go to dark
+                        localStorage.setItem('theme','dark');
+                        applyTheme('dark');
+                    } else if (saved === 'dark') {
+                        // go to system
+                        localStorage.removeItem('theme');
+                        applySystemPreference();
+                    } else {
+                        // system or unset -> go to light
+                        localStorage.setItem('theme','light');
+                        applyTheme('light');
+                    }
+                    // pulse feedback
+                    themeCycleBtn.classList.add('pulse'); setTimeout(()=>themeCycleBtn.classList.remove('pulse'),380);
+                }
+
+                themeCycleBtn.addEventListener('click', (e)=>{ e.stopPropagation(); cycleTheme(); });
+
+                // Inject styles for the floating button
+                const s = document.createElement('style');
+                s.textContent = `#theme-cycle-btn{position:fixed;right:18px;bottom:92px;z-index:9999;background:var(--color-neon);color:#fff;border:none;padding:10px 12px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,0.22);cursor:pointer;transition:transform .18s ease,opacity .18s ease,background .18s ease;font-size:16px;}#theme-cycle-btn .fas{transform:translateY(1px);}#theme-cycle-btn:hover{transform:translateY(-3px);}#theme-cycle-btn.pulse{transform:scale(1.08);}@media (max-width:640px){#theme-cycle-btn{right:12px;bottom:78px;padding:8px 10px;font-size:14px;}}@media (prefers-reduced-motion:reduce){#theme-cycle-btn,#theme-cycle-btn *{transition:none!important;animation:none!important;}}`;
+                document.head.appendChild(s);
+            })();
+
+
+            // --- 2. Implementasi Keranjang dan Local Storage ---
+            
+            // 1. Inisialisasi Keranjang dari Local Storage
+            let cartItemCount = parseInt(localStorage.getItem('bjSportCartCount')) || 0; 
+            
+            function updateCartCount() {
+                localStorage.setItem('bjSportCartCount', cartItemCount);
+                cartCountElement.textContent = cartItemCount > 9 ? '9+' : cartItemCount;
+            }
+
+            // 2. Event Listener untuk Tombol "Tambah ke Keranjang" + fly-to-cart animation
+            function animateFlyToCart(imgEl) {
+                try {
+                    const cartBtn = document.getElementById('cart-button');
+                    if (!imgEl || !cartBtn) return;
+                    const imgRect = imgEl.getBoundingClientRect();
+                    const cartRect = cartBtn.getBoundingClientRect();
+                    const clone = imgEl.cloneNode(true);
+                    clone.classList.add('fly-image');
+                    clone.style.left = imgRect.left + 'px';
+                    clone.style.top = imgRect.top + 'px';
+                    clone.style.width = imgRect.width + 'px';
+                    clone.style.height = imgRect.height + 'px';
+                    document.body.appendChild(clone);
+                    // force reflow
+                    clone.getBoundingClientRect();
+                    const translateX = (cartRect.left + cartRect.width/2) - (imgRect.left + imgRect.width/2);
+                    const translateY = (cartRect.top + cartRect.height/2) - (imgRect.top + imgRect.height/2);
+                    clone.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.18)`;
+                    clone.style.opacity = '0.95';
+                    setTimeout(() => { clone.style.opacity = '0'; }, 620);
+                    setTimeout(() => { clone.remove(); }, 800);
+                } catch (e) { console.error(e); }
+            }
+
+            function updateCartPreview() {
+                const previewItems = document.getElementById('cart-preview-items');
+                if (!previewItems) return;
+                previewItems.textContent = cartItemCount ? `${cartItemCount} item dalam keranjang` : 'Belum ada item.';
+            }
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    cartItemCount++;
+                    updateCartCount();
+
+                    // Micro-interaction: Tombol Feedback
+                    button.classList.add('animate-ping-once');
+                    setTimeout(() => {
+                        button.classList.remove('animate-ping-once');
+                    }, 500);
+
+                    // Fly-to-cart (clone gambar dan terbang ke ikon keranjang)
+                    const productCard = button.closest('.product-card') || button.closest('a.product-card');
+                    const img = productCard ? productCard.querySelector('img') : document.querySelector('.img-wrap img');
+                    if (img) animateFlyToCart(img);
+
+                    // Update ringkasan preview dan pastikan preview menampilkan jumlah terbaru
+                    updateCartPreview();
+
+                    // Simple console log untuk debug
+                    console.log(`Produk "${button.dataset.productName}" ditambahkan. Total: ${cartItemCount}`);
+                });
+            });
+
+            // Inisialisasi preview
+            updateCartPreview();
+
+            // Cart preview toggle + click outside to close
+            const cartButtonEl = document.getElementById('cart-button');
+            const cartPreviewEl = document.getElementById('cart-preview');
+            if (cartButtonEl && cartPreviewEl) {
+                cartButtonEl.addEventListener('click', (ev) => { ev.preventDefault(); cartPreviewEl.classList.toggle('hidden'); updateCartPreview(); });
+                document.addEventListener('click', (ev) => {
+                    if (!cartButtonEl.contains(ev.target) && !cartPreviewEl.contains(ev.target)) cartPreviewEl.classList.add('hidden');
+                });
+                document.getElementById('cart-preview-close')?.addEventListener('click', () => cartPreviewEl.classList.add('hidden'));
+            }
+
+            // --- Quick-view modal handlers ---
+            const quickviewModal = document.getElementById('quickview-modal');
+            const quickviewImage = document.getElementById('quickview-image');
+            const quickviewTitle = document.getElementById('quickview-title');
+            const quickviewPrice = document.getElementById('quickview-price');
+            const quickviewDesc = document.getElementById('quickview-desc');
+            const quickviewAdd = document.getElementById('quickview-add');
+
+            function openQuickviewFromImg(img) {
+                if (!quickviewModal || !img) return;
+                const card = img.closest('.product-card') || img.closest('a.product-card') || img.closest('section');
+                quickviewImage.src = img.src;
+                quickviewTitle.textContent = (card && (card.querySelector('h3')?.textContent)) || img.alt || 'Produk';
+                // try to find a price inside card (various selectors exist)
+                quickviewPrice.textContent = (card && (card.querySelector('.text-2xl.font-bold.text-neon')?.textContent || card.querySelector('.text-2xl')?.textContent)) || 'Rp -';
+                quickviewDesc.textContent = (card && (card.querySelector('p')?.textContent)) || '';
+                quickviewModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeQuickview() { if (!quickviewModal) return; quickviewModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+
+            // attach to all product images
+            document.querySelectorAll('.img-wrap img, .product-card img').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', (e) => {
+                    openQuickviewFromImg(img);
+                });
+            });
+
+            document.getElementById('quickview-close')?.addEventListener('click', closeQuickview);
+            document.getElementById('quickview-close-2')?.addEventListener('click', closeQuickview);
+            quickviewModal?.addEventListener('click', (e) => { if (e.target === quickviewModal) closeQuickview(); });
+
+            quickviewAdd?.addEventListener('click', () => {
+                cartItemCount++; updateCartCount(); updateCartPreview(); animateFlyToCart(quickviewImage); closeQuickview();
+            });
+
+            // close modal / preview with Escape key
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape') {
+                    closeQuickview();
+                    cartPreviewEl?.classList.add('hidden');
+                }
+            });
+
+            // Inisialisasi tampilan keranjang
+            updateCartCount();
+
+            // --- Best Seller carousel controls ---
+            (function(){
+                const row = document.getElementById('best-seller-row');
+                const btnL = document.getElementById('bs-left');
+                const btnR = document.getElementById('bs-right');
+                if (!row) return;
+
+                const updateBtns = () => {
+                    if (!btnL || !btnR) return;
+                    btnL.style.display = row.scrollLeft > 10 ? 'flex' : 'none';
+                    btnR.style.display = (row.scrollLeft + row.clientWidth) < row.scrollWidth - 10 ? 'flex' : 'none';
+                };
+
+                // initial
+                updateBtns();
+
+                btnL?.addEventListener('click', () => {
+                    row.scrollBy({ left: -Math.round(row.clientWidth * 0.7), behavior: 'smooth' });
+                    setTimeout(updateBtns, 450);
+                });
+                btnR?.addEventListener('click', () => {
+                    row.scrollBy({ left: Math.round(row.clientWidth * 0.7), behavior: 'smooth' });
+                    setTimeout(updateBtns, 450);
+                });
+
+                row.addEventListener('scroll', () => { updateBtns(); });
+                window.addEventListener('resize', updateBtns);
+            })();
+
+            // --- Katalog carousel controls ---
+            (function(){
+                const row = document.getElementById('katalog-row');
+                const btnL = document.getElementById('k-left');
+                const btnR = document.getElementById('k-right');
+                if (!row) return;
+
+                const updateBtns = () => {
+                    if (!btnL || !btnR) return;
+                    btnL.style.display = row.scrollLeft > 10 ? 'flex' : 'none';
+                    btnR.style.display = (row.scrollLeft + row.clientWidth) < row.scrollWidth - 10 ? 'flex' : 'none';
+                };
+
+                updateBtns();
+
+                btnL?.addEventListener('click', () => {
+                    row.scrollBy({ left: -Math.round(row.clientWidth * 0.7), behavior: 'smooth' });
+                    setTimeout(updateBtns, 450);
+                });
+                btnR?.addEventListener('click', () => {
+                    row.scrollBy({ left: Math.round(row.clientWidth * 0.7), behavior: 'smooth' });
+                    setTimeout(updateBtns, 450);
+                });
+
+                row.addEventListener('scroll', () => { updateBtns(); });
+                window.addEventListener('resize', updateBtns);
+            })();
+
+            // --- Animations: reveal on scroll & staggered reveal ---
+            (function(){
+                const revealElements = document.querySelectorAll('.reveal-on-scroll');
+                if (revealElements.length) {
+                    const observer = new IntersectionObserver((entries, obs) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const el = entry.target;
+                                const delay = parseInt(el.getAttribute('data-reveal-delay')) || 0;
+                                setTimeout(() => el.classList.add('visible'), delay);
+                                obs.unobserve(el);
+                            }
+                        });
+                    }, { threshold: 0.12 });
+
+                    revealElements.forEach((el, i) => {
+                        if (!el.hasAttribute('data-reveal-delay')) el.setAttribute('data-reveal-delay', i * 80);
+                        observer.observe(el);
+                    });
+                }
+            })();
+        });
+    </script>
+</body>
+</html>
